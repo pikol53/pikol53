@@ -1,26 +1,14 @@
-/* =====================================================================
-   EDIT YOUR PORTFOLIO HERE
-   ---------------------------------------------------------------------
-   - Your name, intro and contact details live in SITE.
-   - Games show on the page in the SAME ORDER as in PROJECTS below.
-     To move a game up or down, cut its whole { ... }, block
-     (from its opening { to its closing },) and paste it elsewhere.
-   - To hide a game without deleting it, add:  hidden: true,
-   - Images go in the /assets folder. The first one is the big image.
-   ===================================================================== */
-
 const SITE = {
   name: "Your Name",                       // shown top-left and in the browser tab
   headline: "I build Roblox worlds that run on physics.",
   intro:
-    "3D artist and Roblox developer on the platform since 2012. I model, build and design levels, " +
-    "with a soft spot for waterslides, ragdolls and puzzles you solve with friends. " +
+    "3D artist and Roblox developer on the platform since 2012. I model, build and design levels, since this year, started to create games completely solo, " +
+    "with a soft spot for physics, ragdolls, waterslides and obbies. " +
     "My games have passed 63 million visits.",
 
-  // Contact — fill these in. Leave a value as "" to hide that line.
-  email: "you@example.com",
-  discord: "your_discord",
-  robloxProfile: "https://www.roblox.com/users/YOUR_USER_ID/profile",
+  email: "patrykpolak22@gmail.com",
+  discord: "pikol53",
+  robloxProfile: "https://www.roblox.com/users/47317527/profile",
 };
 
 const PROJECTS = [
