@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio</title>
+  <meta name="description" content="3D artist and Roblox developer portfolio.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#" id="brand">Your Name</a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 id="headline"></h1>
+      <p class="lede" id="intro"></p>
+      <div class="hero-actions">
+        <a class="btn" href="#work">See my games</a>
+        <a class="btn btn-quiet" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="work" class="work" aria-label="Games">
+      <div id="projects"></div>
+      <p class="more" id="more"></p>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Need a 3D artist or Roblox developer?</h2>
+      <p>I'm open to studio work. Reach me here:</p>
+      <ul class="contact-list" id="contact-list"></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span id="foot-name"></span>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+    <button class="lb-btn lb-close" data-lb="close" aria-label="Close">✕</button>
+    <button class="lb-btn lb-prev" data-lb="prev" aria-label="Previous image">‹</button>
+    <img id="lb-img" alt="">
+    <button class="lb-btn lb-next" data-lb="next" aria-label="Next image">›</button>
+  </dialog>
+
+  <script src="projects.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
