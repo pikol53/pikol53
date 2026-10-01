@@ -1,12 +1,12 @@
 const SITE = {
-  name: "Your Name",                       // shown top-left and in the browser tab
-  headline: "I build Roblox worlds that run on physics.",
+  headline: "Roblox developer specialized in 3D stylized environments.",
   intro:
-    "3D artist and Roblox developer on the platform since 2012. I model, build and design levels, since this year, started to create games completely solo, " +
-    "with a soft spot for physics, ragdolls, waterslides and obbies. " +
+    "3D artist and Roblox developer on the platform since 2012. I model, build and design levels, " +
+    "with a soft spot for waterslides, ragdolls and puzzles you solve with friends. " +
     "My games have passed 63 million visits.",
 
-  email: "patrykpolak22@gmail.com",
+  // Contact — fill these in. Leave a value as "" to hide that line.
+  email: "pikol53.fluxgames@gmail.com",
   discord: "pikol53",
   robloxProfile: "https://www.roblox.com/users/47317527/profile",
 };
@@ -17,7 +17,7 @@ const PROJECTS = [
     stat: "4M+",
     statLabel: "plays in 2026 so far",
     role: "Solo project",
-    year: "",                               // e.g. "2025" — leave "" to hide
+    year: "2026",                           // leave "" to hide
     tags: ["Ragdoll physics", "Slide design", "3D modeling", "Scripting"],
     description:
       "An experiment in building a game around one thing only: the most fun giant slide I could make. " +
@@ -56,7 +56,7 @@ const PROJECTS = [
     description:
       "A two-player ragdoll tycoon. I rebranded and relaunched it several times, which grew its " +
       "player count more than six times over.",
-    link: "",                               // no single game link
+    link: "https://www.roblox.com/games/18233657371/2-Player-Ragdoll-Tycoon",
     // Shown as small plain text (not clickable)
     footnote: {
       label: "Published through these communities:",
@@ -107,6 +107,8 @@ const PROJECTS = [
   },
 ];
 
-// The quiet line shown after the games. Set to "" to hide it.
-const MORE_WORK =
-  "Plus many smaller games I've made since joining Roblox in 2012.";
+// The block shown after the games. Set text to "" to hide it.
+const MORE_WORK = {
+  text: "Plus many smaller games I've made since joining Roblox in 2012.",
+  button: "Find them in the groups on my profile",   // links to SITE.robloxProfile
+};
