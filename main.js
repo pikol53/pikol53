@@ -8,11 +8,16 @@
   };
 
   /* ---------- Site info ---------- */
-  document.title = `${SITE.name} | 3D artist & Roblox developer`;
-  $("#brand").textContent = SITE.name;
   $("#headline").textContent = SITE.headline;
   $("#intro").textContent = SITE.intro;
-  $("#foot-name").textContent = `© ${new Date().getFullYear()} ${SITE.name}`;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function watchVideo(v) {
+    if (!("IntersectionObserver" in window) || reduceMotion) return;
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()));
+    }, { threshold: 0.4 }).observe(v);
+  }
 
   /* ---------- Projects ---------- */
   const list = $("#projects");
@@ -22,67 +27,66 @@
 
     // media column
     const mediaCol = el("div", "media");
-    const first = p.media[0];
-    let stage;
+    const stage = el("div", "stage");
+    const images = p.media.filter((m) => m.src);
+    let current = 0;
 
-    if (first.video) {
-      stage = el("div", "stage is-video");
-      const v = document.createElement("video");
-      v.src = first.video;
-      if (first.poster) v.poster = first.poster;
-      v.muted = true;
-      v.loop = true;
-      v.playsInline = true;
-      v.controls = true;
-      v.preload = "metadata";
-      v.setAttribute("aria-label", first.alt || p.title);
-      stage.appendChild(v);
-      // play only while on screen
-      if ("IntersectionObserver" in window &&
-          !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        new IntersectionObserver((entries) => {
-          entries.forEach((e) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()));
-        }, { threshold: 0.4 }).observe(v);
+    function render(idx) {
+      const m = p.media[idx];
+      current = idx;
+      stage.querySelectorAll("video").forEach((v) => v.pause());
+      stage.innerHTML = "";
+      if (m.video) {
+        stage.className = "stage is-video";
+        const v = document.createElement("video");
+        v.src = m.video;
+        if (m.poster) v.poster = m.poster;
+        v.muted = true; v.loop = true; v.playsInline = true; v.controls = true;
+        v.preload = "metadata";
+        v.setAttribute("aria-label", m.alt || p.title);
+        stage.appendChild(v);
+        if (idx !== 0) v.play().catch(() => {});      // user picked it: play now
+        else watchVideo(v);                           // first item: play when on screen
+      } else {
+        stage.className = "stage";
+        const b = el("button", "stage-btn");
+        b.type = "button";
+        b.setAttribute("aria-label", `Enlarge image: ${m.alt || p.title}`);
+        const img = document.createElement("img");
+        img.src = m.src; img.alt = m.alt || p.title; img.loading = "lazy";
+        b.appendChild(img);
+        b.addEventListener("click", () => openLightbox(images, images.indexOf(m)));
+        stage.appendChild(b);
       }
-    } else {
-      stage = el("button", "stage");
-      stage.type = "button";
-      stage.setAttribute("aria-label", `Enlarge image: ${first.alt}`);
-      const img = document.createElement("img");
-      img.src = first.src;
-      img.alt = first.alt || p.title;
-      img.loading = "lazy";
-      stage.appendChild(img);
-      stage.dataset.index = "0";
-      stage.addEventListener("click", () =>
-        openLightbox(p.media.filter((m) => m.src), Number(stage.dataset.index)));
     }
+    render(0);
     mediaCol.appendChild(stage);
 
-    const images = p.media.filter((m) => m.src);
-    if (images.length > 1) {
+    if (p.media.length > 1) {
       const thumbs = el("div", "thumbs");
-      images.forEach((m, i) => {
-        const t = el("button", "thumb");
+      p.media.forEach((m, i) => {
+        const t = el("button", "thumb" + (m.video ? " is-video" : ""));
         t.type = "button";
-        t.setAttribute("aria-label", `Show image ${i + 1}: ${m.alt}`);
+        t.setAttribute("aria-label", `Show ${m.video ? "video" : "image"} ${i + 1}: ${m.alt || ""}`);
         if (i === 0) t.setAttribute("aria-current", "true");
-        const ti = document.createElement("img");
-        ti.src = m.src; ti.alt = ""; ti.loading = "lazy";
-        t.appendChild(ti);
+        if (m.video) {
+          if (m.poster) {
+            const ti = document.createElement("img"); ti.src = m.poster; ti.alt = ""; t.appendChild(ti);
+          } else {
+            const tv = document.createElement("video");
+            tv.src = m.video + "#t=0.5"; tv.muted = true; tv.preload = "metadata"; tv.tabIndex = -1;
+            t.appendChild(tv);
+          }
+        } else {
+          const ti = document.createElement("img"); ti.src = m.src; ti.alt = ""; ti.loading = "lazy";
+          t.appendChild(ti);
+        }
         t.addEventListener("click", () => {
-          if (stage.dataset.index === String(i)) return;
+          if (current === i) return;
           thumbs.querySelectorAll(".thumb").forEach((b) => b.removeAttribute("aria-current"));
           t.setAttribute("aria-current", "true");
-          const img = stage.querySelector("img");
           stage.classList.add("is-swapping");
-          setTimeout(() => {
-            img.src = m.src; img.alt = m.alt;
-            stage.dataset.index = String(i);
-            stage.setAttribute("aria-label", `Enlarge image: ${m.alt}`);
-            img.onload = () => stage.classList.remove("is-swapping");
-            if (img.complete) stage.classList.remove("is-swapping");
-          }, 180);
+          setTimeout(() => { render(i); }, 160);
         });
         thumbs.appendChild(t);
       });
@@ -130,12 +134,12 @@
     list.appendChild(art);
   });
 
-  /* ---------- More work line ---------- */
+  /* ---------- More work block ---------- */
   const more = $("#more");
-  if (MORE_WORK) {
-    more.textContent = MORE_WORK + " ";
-    if (SITE.robloxProfile && !SITE.robloxProfile.includes("YOUR_USER_ID")) {
-      const a = el("a", null, "See them on my Roblox profile");
+  if (MORE_WORK && MORE_WORK.text) {
+    more.appendChild(el("p", null, MORE_WORK.text));
+    if (SITE.robloxProfile && MORE_WORK.button) {
+      const a = el("a", "btn", MORE_WORK.button);
       a.href = SITE.robloxProfile; a.target = "_blank"; a.rel = "noopener";
       more.appendChild(a);
     }
