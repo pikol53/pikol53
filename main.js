@@ -1,3 +1,5 @@
+// You shouldn't need to edit this file. Content lives in projects.js.
+
 (function () {
   const $ = (sel) => document.querySelector(sel);
   const el = (tag, cls, text) => {

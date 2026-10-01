@@ -1,3 +1,17 @@
+/* =====================================================================
+   EDIT YOUR PORTFOLIO HERE
+   ---------------------------------------------------------------------
+   - Your name, intro and contact details live in SITE.
+   - Games show on the page in the SAME ORDER as in PROJECTS below.
+     To move a game up or down, cut its whole { ... }, block
+     (from its opening { to its closing },) and paste it elsewhere.
+   - To hide a game without deleting it, add:  hidden: true,
+   - Images and videos go in the /assets folder. The first item in
+     "media" is the big one, the rest become thumbnails.
+       image:  { src: "assets/my-image.png", alt: "short description" },
+       video:  { video: "assets/my-clip.mp4", alt: "short description" },
+   ===================================================================== */
+
 const SITE = {
   headline: "Roblox developer specialized in 3D stylized environments.",
   intro:
