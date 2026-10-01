@@ -2,8 +2,8 @@ const SITE = {
   headline: "Roblox developer specialized in 3D stylized environments.",
   intro:
     "Polish 3D artist and Roblox developer on the platform since 2012. Experiences I created total over 60 million visits. " +
-    "Thanks to years of experience with Roblox Studio, I can create projects by myself from scratch. " +
-    "Especially experienced (as both game developer and player) with: Tycoons | Obbies | Waterslides | Ragdolls.",
+    "Thanks to years of experience with Roblox Studio, I can create projects by myself from scratch but the best at 3D world building and UI " +
+    "Especially experienced (as both game developer and player) with these genres and mechanics: Tycoons | Obbies | Waterslides | Ragdolls.",
   email: "pikol53.fluxgames@gmail.com",
   discord: "pikol53",
   robloxProfile: "https://www.roblox.com/users/47317527/profile",
@@ -33,7 +33,7 @@ const PROJECTS = [
     statLabel: "visits",
     role: "Everything except scripting",
     year: "2023",
-    tags: ["Level design", "Puzzle design", "3D modeling", "UI"],
+    tags: ["Puzzle design", "Obby", "3D modeling", "UI"],
     description:
       "My most popular game: a puzzle obby built around cooperation, where players have to work " +
       "together with buttons, platforms and timing to get through each stage. " +
@@ -77,10 +77,10 @@ const PROJECTS = [
     statLabel: "visits",
     role: "Everything except scripting",
     year: "2022",
-    tags: ["Open world", "Obby design", "Physics puzzles", "3D modeling"],
+    tags: ["Open world", "Obby", "Puzzles", "Ragdoll", "3D modeling cute slimes"],
     description:
-      "An open-world scavenger hunt built from many different obbies and puzzles, a lot of them " +
-      "centered on ragdolls, waterslides and physics.",
+      "An open-world scavenger hunt with focus on open world exploration filled with many slimes to collect as a reward " +
+      "multiple slimes are blocked behind puzzles, obbies, and of course, both of these sometimes rely on ragdolls",
     link: "https://www.roblox.com/games/8850326889/Find-The-Slimes",
     media: [
       { src: "assets/find-the-slimes-1.png" },
