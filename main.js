@@ -10,8 +10,9 @@
   };
 
   /* ---------- Site info ---------- */
-  $("#headline").textContent = SITE.headline;
-  $("#intro").textContent = SITE.intro;
+  const setText = (sel, val) => { const n = $(sel); if (n) n.textContent = val; };
+  setText("#headline", SITE.headline);
+  setText("#intro", SITE.intro);
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function watchVideo(v) {
